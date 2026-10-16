@@ -1,0 +1,57 @@
+# Keil MDK build outputs (rt1064.uvprojx output directories)
+/demo/mdk/Objects/
+/demo/mdk/Listings/
+
+# Compiler intermediates and generated reports
+*.o
+*.obj
+*.d
+*.dep
+*.crf
+*.axf
+*.elf
+*.out
+*.map
+*.lst
+*.lnp
+*.iex
+*.build_log.htm
+
+# Keil user workspace state and backups
+*.uvguix.*
+*.uvgui.*
+*.uvgui
+*.uvoptx
+*.uvopt
+*.uvprojx.bak
+*.uvoptx.bak
+
+# IAR generated outputs and local debugger session state
+/demo/iar/program/Debug/
+/demo/iar/program/Release/
+/demo/iar/program/settings/
+
+# Keil Assistant generates this file with machine-specific absolute paths
+/demo/mdk/.vscode/c_cpp_properties.json
+
+# Tool logs, locks, and editor caches
+*.log
+*.log.lock
+JLinkLog.txt
+JLinkLog.txt.*
+.cache/
+.clangd/
+.vscode/ipch/
+*.swp
+*.swo
+*~
+*.tmp
+
+# Operating system metadata
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Keep project inputs: .uvprojx, .ewp/.eww/.ewd/.ewt, .scf/.sct/.icf,
+# ini/, JLinkSettings.ini, and libraries/zf_device/zf_device_config.lib/.a.
+# Firmware binaries are covered by build directories, not global *.bin/*.hex.
