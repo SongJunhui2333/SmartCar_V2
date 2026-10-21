@@ -122,9 +122,17 @@ int main(void)
             pwm_set_duty(SERVO_MOTOR_PWM, SERVO_MOTOR_DUTY(tmp_duty));
 
             // 显示关键信息
-            tft180_show_int(0, 100, encoder_data_1, 3);
-            tft180_show_int(0, 120, encoder_data_2, 3);
-            tft180_show_float(0, 140, speed_pwm, 4, 2);
+            tft180_show_string(0, 100, "L:");
+            tft180_show_int(16, 100, encoder_data_1, 3);
+            tft180_show_string(64, 100, "R:");
+            tft180_show_int(80, 100, encoder_data_2, 3);
+            tft180_show_string(0, 120, "PWM:");
+            tft180_show_float(32, 120, speed_pwm, 4, 2);
+            // A: commanded servo angle after limiting; E: image error in pixels.
+            tft180_show_string(0, 140, "A:");
+            tft180_show_float(16, 140, tmp_duty, 3, 1);
+            tft180_show_string(64, 140, "E:");
+            tft180_show_int(80, 140, (int32)mid_err, 3);
 
             // printf("%d, %d", encoder_data_1, encoder_data_2);
 
