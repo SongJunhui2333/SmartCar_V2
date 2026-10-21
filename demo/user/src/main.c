@@ -76,6 +76,24 @@ uint8_t left_line[MT9V03X_H];
 uint8_t mid_line[MT9V03X_H];
 uint8_t right_line[MT9V03X_H];
 
+// 接收中断写入调试 FIFO，主循环分批回显，避免在中断里阻塞发送。
+static void debug_uart_echo_poll(void)
+{
+    uint8 rx_buffer[32];
+    uint32 rx_length;
+    uint32 interrupt_state;
+
+    // FIFO 的读写共享状态需要保护；发送前恢复原来的中断状态。
+    interrupt_state = interrupt_global_disable();
+    rx_length = debug_read_ring_buffer(rx_buffer, sizeof(rx_buffer));
+    interrupt_global_enable(interrupt_state);
+
+    if (rx_length > 0)
+    {
+        debug_send_buffer(rx_buffer, rx_length);
+    }
+}
+
 int main(void)
 {
     clock_init(SYSTEM_CLOCK_600M); // 不可删除
@@ -89,6 +107,8 @@ int main(void)
 
     while (1)
     {
+        debug_uart_echo_poll();
+
         //  mt9v03x摄像头
         if (mt9v03x_finish_flag)
         {

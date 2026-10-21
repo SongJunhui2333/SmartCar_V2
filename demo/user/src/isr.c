@@ -78,7 +78,7 @@ void PIT_IRQHandler(void)
         gpio_set_level(MOTOR2_DIR, MOTOR2_FORWARD_DIR_LEVEL);
 
         // 向上位机发送数据
-        printf("%d, %d, %.1f\n", encoder_data_1, encoder_data_2, speed_target);
+        //printf("%d, %d, %.1f\n", encoder_data_1, encoder_data_2, speed_target);
 
         pit_flag_clear(PIT_CH0);
     }
